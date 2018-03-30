@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27 ???. 2018 17:03:00 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="booksage.Authors" table="authors" catalog="bookstoreTest" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="`first name`" length="20" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="`last name`" length="20" not-null="true" />
+        </property>
+        <property name="age" type="date">
+            <column name="age" length="10" not-null="true" />
+        </property>
+        <set name="bookses" table="books" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="author_id" not-null="true" />
+            </key>
+            <one-to-many class="booksage.Books" />
+        </set>
+    </class>
+</hibernate-mapping>
